@@ -1,0 +1,15 @@
+{
+  "name": "soporte2026",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "docker compose up --build",
+    "dev:api": "npm --workspace apps/api run dev",
+    "dev:web": "npm --workspace apps/web run start",
+    "build": "npm --workspace apps/api run build && npm --workspace apps/web run build",
+    "test": "npm --workspace apps/api run test"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "info": {
+    "name": "Soporte2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {"name": "Login", "request": {"method": "POST", "url": "{{baseUrl}}/auth/login"}},
+    {"name": "Me", "request": {"method": "GET", "url": "{{baseUrl}}/me"}},
+    {"name": "Productos", "request": {"method": "GET", "url": "{{baseUrl}}/products"}},
+    {"name": "Cotizaciones", "request": {"method": "GET", "url": "{{baseUrl}}/quotes"}}
+  ]
+}
