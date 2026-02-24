@@ -61,6 +61,44 @@ usa este flujo recomendado:
    - API: `http://localhost:3000`
    - Swagger: `http://localhost:3000/docs`
 
+### Error: `docker-credential-desktop.exe: exec format error` en WSL
+
+Ese error ocurre cuando WSL intenta ejecutar el helper de credenciales de Windows con una ruta/configuración inválida.
+
+1. Revisa tu archivo de Docker en WSL:
+   ```bash
+   cat ~/.docker/config.json
+   ```
+2. Si aparece `"credsStore": "desktop.exe"` o valores extraños, corrígelo a:
+   ```json
+   {
+     "auths": {},
+     "credsStore": "desktop"
+   }
+   ```
+3. Alternativa rápida (desactivar helper temporalmente):
+   ```bash
+   cp ~/.docker/config.json ~/.docker/config.json.bak 2>/dev/null || true
+   printf '{\"auths\": {}}\n' > ~/.docker/config.json
+   ```
+4. Reinicia Docker Desktop y luego en WSL valida:
+   ```bash
+   docker version
+   docker compose version
+   ```
+5. Vuelve a ejecutar:
+   ```bash
+   docker compose up --build
+   ```
+
+Si aún falla, ejecuta en **PowerShell (Administrador)**:
+
+```powershell
+wsl --shutdown
+```
+
+y vuelve a abrir Ubuntu.
+
 ### Si sale error de puertos ocupados
 
 Verifica si ya hay procesos usando 3000, 3306 o 4200 (por ejemplo XAMPP/MySQL local) y detén esos servicios antes de ejecutar `docker compose up --build`.
