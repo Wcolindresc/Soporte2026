@@ -30,6 +30,50 @@ Servicios:
 - Web: `http://localhost:4200`
 - MySQL: `localhost:3306`
 
+
+## Ejecutar en Windows 11 (Docker Desktop + Ubuntu/WSL)
+
+Como ya tienes el proyecto en:
+
+`C:\Users\wilmer.colindres\Documents\GitHub\Soporte2026`
+
+usa este flujo recomendado:
+
+1. Abre **Ubuntu (WSL)**.
+2. Entra a la carpeta del proyecto montada desde Windows:
+   ```bash
+   cd /mnt/c/Users/wilmer.colindres/Documents/GitHub/Soporte2026
+   ```
+3. Crea tu archivo de entorno en raíz:
+   ```bash
+   cp .env.example .env
+   ```
+4. (Opcional pero recomendado) crea también el env del API:
+   ```bash
+   cp apps/api/.env.example apps/api/.env
+   ```
+5. Levanta todo:
+   ```bash
+   docker compose up --build
+   ```
+6. Abre en tu navegador Windows:
+   - Web: `http://localhost:4200`
+   - API: `http://localhost:3000`
+   - Swagger: `http://localhost:3000/docs`
+
+### Si sale error de puertos ocupados
+
+Verifica si ya hay procesos usando 3000, 3306 o 4200 (por ejemplo XAMPP/MySQL local) y detén esos servicios antes de ejecutar `docker compose up --build`.
+
+### Comandos útiles
+
+```bash
+docker compose ps
+docker compose logs -f api
+docker compose logs -f web
+docker compose down
+```
+
 ## Migraciones + seed
 
 Desde `apps/api`:
