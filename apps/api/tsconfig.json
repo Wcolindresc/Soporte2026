@@ -7,8 +7,14 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "rootDir": "src",
-    "types": ["node", "jest"]
+    "types": [
+      "node",
+      "jest"
+    ]
   },
-  "include": ["src", "tests", "prisma/seed.ts"]
+  "include": [
+    "src",
+    "tests",
+    "prisma/seed.ts"
+  ]
 }
